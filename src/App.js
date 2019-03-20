@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 
+import Routes from './router'
 class App extends Component {
   render() {
     return (
-      <div className="App" >这是app</div>
+      <div className="wrap">
+        <Routes />
+      </div>
     );
   }
 }

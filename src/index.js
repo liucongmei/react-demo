@@ -1,36 +1,47 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import './themes/common.css'
-import './index.css';
-// import App from './App';
+// import './index.css';
+import App from './App';
+import IRouter from './router'
+import User from './pages/User'
+import { createStore } from 'redux' 
+import { Provider, connect } from 'react-redux'
+import {BrowserRouter} from "react-router-dom"
 
+import reducer from './store/index.reducer'
 import * as serviceWorker from './serviceWorker';
-import Dashboard from './pages/dashboard'
-import User from './pages/user'
 
-export default class Hello extends Component{
-    render(){
-        return (
-            <Router>
-                <div className='wrapper'>
-                    <Route exact path="/" component={Dashboard} />
-                    <Route exact path="/user" component={User} />
-                    <div className="nav">
-                        <div className="nav-box">
-                            <div className='item-nav'><Link to="/">首页</Link></div>
-                            <div className='item-nav'><Link to="/">圈子</Link></div>
-                            <div className='item-nav'><Link to="/user">我的</Link></div>
-                        </div>
-        　　 　　　　</div>                    
-                </div>
-            </Router>
-        )
-    }
-}
+// export default class Hello extends Component{
+//     render(){
+//         return (
+//             <Router>
+//                 <div className='wrapper'>
+//                     <Route exact path="/" component={Dashboard} />
+//                     <Route exact path="/user" component={User} />
+//                     <div className="nav">
+//                         <div className="nav-box">
+//                             <div className='item-nav'><Link to="/">首页</Link></div>
+//                             <div className='item-nav'><Link to="/">圈子</Link></div>
+//                             <div className='item-nav'><Link to="/user">我的</Link></div>
+//                         </div>
+//         　　 　　　　</div>                    
+//                 </div>
+//             </Router>
+//         )
+//     }
+// }
+//创建store
+const store = createStore(reducer);
+
 ReactDOM.render(
-	// <App />, 
-	<Hello/>,
+    <Provider store={store}>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Provider>,
+    
 	document.getElementById('root')
 );
 
